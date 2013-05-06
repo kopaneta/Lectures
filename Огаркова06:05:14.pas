@@ -132,7 +132,7 @@ var
 	m:integer;
 begin
 	SetLength(map, FCnt);
-	m:=FillMap(map,len);//ckbzybt ,eltn blnb lj nt[ gjh gjrf d rfhnt byltrcjd ,jkmit xtv jlby 'ktvtyn']
+	m:=FillMap(map,len);//слияние будет идти до тех пор пока в карте индексов больше чем один элемент
 	while m>1 do
 		begin
 			
