@@ -133,10 +133,20 @@ var
 begin
 	SetLength(map, FCnt);
 	m:=FillMap(map,len);//слияние будет идти до тех пор пока в карте индексов больше чем один элемент
-	while m>1 do
-		begin
-			
-		end;
+	while (m>1) do
+	begin
+		imin:=0;
+		for i:=1 to m-1 do
+			if FSeq[m[i]]<FSeq[map[imin]]
+				then imin:=l;
+		FSeq[map[imin]].Copy(f0);
+		if FSeq[map[imin]].eor
+			then begin
+				map[imin]:=map[m-1];
+				dec(m);
+			end;		
+	end;
+	FSeq[map[0]].CopyRun(f0);
 end;
 
 function TSequence.Merge(var len:integer):integer;
