@@ -138,3 +138,5 @@ begin
 			
 		end;
 end;
+
+function TSequence.Merge
