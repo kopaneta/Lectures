@@ -74,3 +74,67 @@ Distribute
 // 			end;
 // 	  end;
 // 4. Закрыть файл
+
+
+// Многопутевое простое двухфазное слияние
+
+// f0: 2 7 5 11 9 8 6 1 2 11
+// f1: 2 9 3
+// f2: 7 8 11
+// f3: 5 6
+// f4: 11 1
+
+// f0: 2 5 7 11 1 6 8 9 3 11
+// f1: 2 5 7 11
+// f2: 1 6 8 9
+// f3: 3 11
+// f4:
+
+// f0:1 2 3 4 5 6 7 8 11 11
+
+TSequence = class
+private
+	FSeq: array of TSequence;
+	FCnt:integer; //количество вспомогательных файлов
+protected
+	
+
+public
+	constructor Create(Names: array of string);
+	destructor Destroy; override;
+	// пригодились бы StartRead, StartWrite, Close, Erase, StartRun
+	function Merge(f0:TSequence; var len:integer):integer;
+	///
+end;
+
+function TSequence.FillMap(var map: array of integer):integer;
+var 
+	i:integer;
+	len:integer;
+begin
+	Result:=0;
+	for i:=0 to FCnt-1 do
+		begin
+			FSeq[i].StartRun(len);
+			if not FSeq[i].eof then
+			begin
+				map.Result:=i
+				inc(Result);
+			end;
+		end;
+end;
+
+procedure TSequence.MergeRun(f0:TSequence; len:integer);
+var
+// некрасивый код, например
+// Карту индексов лучше делать полем TSequence
+	map: array of integer;
+	m:integer;
+begin
+	SetLength(map, FCnt);
+	m:=FillMap(map,len);//ckbzybt ,eltn blnb lj nt[ gjh gjrf d rfhnt byltrcjd ,jkmit xtv jlby 'ktvtyn']
+	while m>1 do
+		begin
+			
+		end;
+end;
