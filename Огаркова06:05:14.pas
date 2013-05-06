@@ -139,4 +139,17 @@ begin
 		end;
 end;
 
-function TSequence.Merge
+function TSequence.Merge(var len:integer):integer;
+begin
+	StartRead(len);
+	f0.StartWrite;
+	m:=FillMap(map, len);
+	while m>0 do
+		begin
+			MergeRun(f0,len);
+			m:=FillMap(map,len);
+		end;
+		Close;
+		f0.Close;
+		len:=len*FCnt;
+end;
